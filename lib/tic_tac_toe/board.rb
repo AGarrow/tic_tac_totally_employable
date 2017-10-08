@@ -6,6 +6,16 @@ module TicTacToe
 			@num_moves = 0
 		end
 
+		def self.create
+			puts "how many rows and columns would you like the board to have?"
+			resp = gets.chomp
+			raise InvalidInputException.new("please enter a number") if /\d+/ !~ resp
+			Board.new(size: resp.to_i)
+		rescue InvalidInputException => e
+			puts e.message
+			retry
+		end
+
 		def draw?
 			num_moves == @board_array.size ** 2
 		end
@@ -27,7 +37,7 @@ module TicTacToe
 
 			def diagonal?
 				diag_1_cells = -2.upto(2).map { |i| {x: last_move[:x] + i, y: last_move[:y] + i} }.select { |c| (lower_limit(:x)..upper_limit(:x)) === c[:x] && (lower_limit(:y)..upper_limit(:y)) === c[:y] }
-				diag_2_cells = -2.upto(2).map { |i| {x: last_move[:x] + i, y: last_move[:y] - 1} }.select { |c| (lower_limit(:x)..upper_limit(:x)) === c[:x] && (lower_limit(:y)..upper_limit(:y)) === c[:y] }
+				diag_2_cells = -2.upto(2).map { |i| {x: last_move[:x] + i, y: last_move[:y] - i} }.select { |c| (lower_limit(:x)..upper_limit(:x)) === c[:x] && (lower_limit(:y)..upper_limit(:y)) === c[:y] }
 				three_in_a_row?(diag_1_cells.map { |c| get(c[:x], c[:y]) }) || three_in_a_row?(diag_2_cells.map { |c| get(c[:x], c[:y]) })
 			end
 

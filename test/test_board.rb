@@ -42,6 +42,15 @@ class BoardTest < Minitest::Test
 				assert board.win?
 			end
 
+			it "should return true if there is a diagonal victory" do
+				board.place_symbol(symbol: :x, x: 0, y: 2)
+				board.place_symbol(symbol: :y, x: 0, y: 0)
+				board.place_symbol(symbol: :x, x: 1, y: 1)
+				board.place_symbol(symbol: :y, x: 2, y: 2)
+				board.place_symbol(symbol: :x, x: 2, y: 0)
+				assert board.win?
+			end
+
 			it "should return false if there is no win condition" do
 				board.place_symbol(symbol: :x, x: 0, y: 0)
 				board.place_symbol(symbol: :y, x: 1, y: 0)

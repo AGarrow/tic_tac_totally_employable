@@ -1,0 +1,29 @@
+PATH
+  remote: .
+  specs:
+    tic_tac_totally_employable (0.0.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    byebug (9.1.0)
+    coderay (1.1.2)
+    method_source (0.9.0)
+    minitest (5.10.3)
+    pry (0.11.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.5.0)
+      byebug (~> 9.1)
+      pry (~> 0.10)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  minitest
+  pry-byebug
+  tic_tac_totally_employable!
+
+BUNDLED WITH
+   1.15.4

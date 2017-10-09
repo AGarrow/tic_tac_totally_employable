@@ -1,43 +1,44 @@
 module TicTacToe
 	class Computer < Player
+		INF = 1/0.0
+		
 		def choose_symbol
 			assign_symbol
 		end
 
 		def get_move(board)
-			minimax(board)
-			@move
+			minimax(board, @symbol, -INF, INF).last
 		end
 
 		private
 
-			def minimax(board)
-				return path_score(board) if board.win? || board.draw?
-				symbol = board.last_symbol ? opposite_symbol(board.last_symbol) : @symbol
-				scores = []
-				moves = []
+			def minimax(board, symbol, alpha, beta)
+				best_move = nil
+				return [path_score(board), best_move] if board.win? || board.draw?
 				available_moves(board.board_array).each do |m|
 					b = board.copy
 					b.place_symbol(symbol: symbol, x: m[:x], y: m[:y])
-					scores.push(minimax(b))
-					moves.push(m)
-				end
+					score = minimax(b, opposite_symbol(symbol), alpha, beta).first
 
-				if symbol == @symbol
-					max_score_index = scores.each_with_index.max[1]
-					@move = moves[max_score_index]
-					return scores[max_score_index]
-				else
-					min_score_index = scores.each_with_index.min[1]
-					@move = moves[min_score_index]
-					return scores[min_score_index]
+					if symbol == @symbol
+						if score > alpha
+							alpha = score
+							best_move = m
+						end
+					else
+						if score < beta
+							beta = score
+							best_move = m
+						end
+					end
+					break if alpha >= beta
 				end
-
+				symbol == @symbol ? [alpha, best_move] : [beta, best_move]
 			end
 
 			def path_score(board)
 				return 0 unless board.win?
-				board.last_symbol == @symbol ? 1 : -1
+				board.last_symbol == @symbol ? 10 : -10
 			end
 
 			def available_moves(board_array)

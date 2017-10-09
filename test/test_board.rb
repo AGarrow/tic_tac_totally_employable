@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require 'pry'
 require 'tic_tac_toe'
 class BoardTest < Minitest::Test
 	describe "Board" do

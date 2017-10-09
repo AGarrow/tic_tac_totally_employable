@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 		"lib/tic_tac_toe/tic_tac_toe.rb",
 		"lib/tic_tac_toe/view.rb"
 	]
+	s.executables << 'tic_tac_totally_employable'
 	s.add_development_dependency 'minitest'
 	s.add_development_dependency 'pry-byebug'
 end

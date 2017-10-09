@@ -8,7 +8,7 @@ module TicTacToe
 		end
 
 		def play
-			current_player = @player_1
+			current_player = [@player_1, @player_2].sample
 			until @winner || @board.draw? do
 				begin
 					@board.place_symbol(symbol: current_player.symbol, **current_player.get_move(@board))

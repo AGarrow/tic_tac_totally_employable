@@ -5,6 +5,8 @@ A tic tac toe game of variable grid size with an unbeatable computer.
 ## Running: 
 run the following:
 `gem install tic_tac_totally_employable`
+
+
 `tic_tac_totally_employable`
 
 thats it!

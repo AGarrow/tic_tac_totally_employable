@@ -1,6 +1,6 @@
 module TicTacToe
 	class Player
-		attr_reader :symbol, :name
+			attr_reader :symbol, :name
 
 		def initialize(name)
 			@name = name
@@ -11,19 +11,13 @@ module TicTacToe
 		end
 
 		def assign_symbol(player_1_symbol: nil)
-			@symbol = player_1_symbol ? Constants::ALLOWED_SYMBOLS.reject { |s| s == player_1_symbol }.first : Constants::ALLOWED_SYMBOLS.first
+			@symbol = player_1_symbol ? Constants::ALLOWED_SYMBOLS.reject { |s| s == player_1_symbol }.first : Constants::ALLOWED_SYMBOLS.sample
 		end
 
 		private
 
 			def self.human?(name)
-				puts "#{name}, are you human? (enter y or n)"
-				resp = gets
-				raise InvalidInputException.new("please enter y or n") if /[YyNn]/ !~ resp
-				/[Yy]/ =~ resp
-			rescue InvalidInputException => e
-				puts e.message
-				retry
+				Input.yes?(message: "#{name}, are you human? (enter y or n)")
 			end
 	end
 end

@@ -7,13 +7,7 @@ module TicTacToe
 		end
 
 		def self.create
-			puts "how many rows and columns would you like the board to have?"
-			resp = gets.chomp
-			raise InvalidInputException.new("please enter a number") if /\d+/ !~ resp
-			Board.new(size: resp.to_i)
-		rescue InvalidInputException => e
-			puts e.message
-			retry
+			Board.new(size: Input.number(message: "how many rows and columns would you like the board to have?"))
 		end
 
 		def copy

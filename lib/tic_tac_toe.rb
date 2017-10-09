@@ -1,3 +1,4 @@
+require "tic_tac_toe/input"
 require "tic_tac_toe/board"
 require "tic_tac_toe/board_state"
 require "tic_tac_toe/player"

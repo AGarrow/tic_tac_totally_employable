@@ -1,3 +1,4 @@
+require 'pry'
 module TicTacToe
 	class Game
 		attr_accessor :board, :player_1, :player_2, :winner
@@ -8,9 +9,9 @@ module TicTacToe
 
 		def play
 			current_player = @player_1
-			until @winner do
+			until @winner || @board.draw? do
 				begin
-					@board.place_symbol(symbol: current_player.symbol, **current_player.get_move(@board.board_array))
+					@board.place_symbol(symbol: current_player.symbol, **current_player.get_move(@board))
 					@winner = @board.win? ? current_player : nil
 					View.render(self)
 					current_player = current_player == @player_1 ? @player_2 : @player_1
@@ -19,6 +20,13 @@ module TicTacToe
 					retry
 				end
 			end
+			self
+		end
+
+		def reset
+			@board = Board.new(size: @board.board_array.size)
+			@winner = nil
+			self
 		end
 
 		private

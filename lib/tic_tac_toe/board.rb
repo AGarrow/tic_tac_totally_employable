@@ -16,8 +16,16 @@ module TicTacToe
 			retry
 		end
 
+		def copy
+			BoardState.new(self)
+		end
+
 		def draw?
 			num_moves == @board_array.size ** 2
+		end
+
+		def last_symbol
+			last_move ? get(last_move[:x], last_move[:y]) : nil
 		end
 
 		def place_symbol(symbol:, x:, y:)
@@ -47,10 +55,6 @@ module TicTacToe
 
 			def horizontal?
 				three_in_a_row?(lower_limit(:x).upto(upper_limit(:x)).map { |x| get(x, last_move[:y]) })
-			end
-
-			def last_symbol
-				get(last_move[:x], last_move[:y])
 			end
 
 			def lower_limit(axis)

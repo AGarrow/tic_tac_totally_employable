@@ -10,8 +10,8 @@ module TicTacToe
 			retry
 		end
 
-		def get_move(board_array)
-			puts "#{@name}: select position in the form x,y where x and y are between 1 and #{board_array.size}"
+		def get_move(board)
+			puts "#{@name}: select position in the form x,y where x and y are between 1 and #{board.board_array.size}"
 			input = gets.chomp
 			raise InvalidInputException.new("please enter the row and column separated by a comma") unless input =~ /\d+,\d+/
 			m = input.split(",").map { |i| i.to_i - 1 }

@@ -3,9 +3,11 @@ Gem::Specification.new do |s|
 	s.version = '0.0.0'
 	s.summary = 'a gem that plays tic tac toe'
 	s.authors = ['alexander garrow']
+	s.required_ruby_version = '~> 2.4.1'
 	s.files = [
 		"lib/tic_tac_toe.rb", 
 		"lib/tic_tac_toe/board.rb",
+		"lib/tic_tac_toe/board_state.rb",
 		"lib/tic_tac_toe/computer.rb",
 		"lib/tic_tac_toe/constants.rb",
 		"lib/tic_tac_toe/game.rb",

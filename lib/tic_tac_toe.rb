@@ -1,4 +1,5 @@
 require "tic_tac_toe/board"
+require "tic_tac_toe/board_state"
 require "tic_tac_toe/player"
 require "tic_tac_toe/computer"
 require "tic_tac_toe/constants"
